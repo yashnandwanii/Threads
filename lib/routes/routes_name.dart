@@ -7,6 +7,6 @@ class RoutesName {
   static String about = '/about';
   static String contact = '/contact';
   static String help = '/help';
-  static String terms = '/terms';
+
   static String editProfile = '/editProfile';
 }
