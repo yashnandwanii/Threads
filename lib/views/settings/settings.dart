@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:threads/controller/settings_controller.dart';
 import 'package:threads/utils/helper.dart';

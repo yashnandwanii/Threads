@@ -4,7 +4,7 @@ import 'package:threads/views/home/home_page.dart';
 import 'package:threads/views/notifications/notifications_page.dart';
 import 'package:threads/views/profile/profile.dart';
 import 'package:threads/views/search/search_page.dart';
-import 'package:threads/views/threads/threads.dart';
+import 'package:threads/views/threads/add_thread.dart';
 
 class NavigationServices extends GetxController {
   var currIndex = 0.obs;
@@ -12,16 +12,20 @@ class NavigationServices extends GetxController {
 
   List<Widget> pages() {
     return [
-      const HomePage(),
+      HomePage(),
       const SearchPage(),
-      const ThreadsPage(),
+      AddThread(),
       const NotificationsPage(),
       const ProfilePage(),
     ];
   }
 
-  void updateIdx(int idx){
+  void updateIdx(int idx) {
     prevIdx.value = currIndex.value;
     currIndex.value = idx;
+  }
+
+  void backToPrevPage() {
+    currIndex.value = prevIdx.value;
   }
 }

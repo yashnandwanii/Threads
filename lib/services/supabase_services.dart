@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:threads/utils/dotenv.dart';
 
@@ -25,7 +24,11 @@ class SupabaseServices extends GetxService {
       final AuthChangeEvent authEvent = data.event;
       if (authEvent == AuthChangeEvent.userUpdated) {
         currentUser.value = data.session?.user;
-      } else {}
+      } else if(authEvent == AuthChangeEvent.signedIn) {
+        currentUser.value = data.session?.user;
+      } else if(authEvent == AuthChangeEvent.signedOut) {
+        currentUser.value = null;
+      }
     });
   }
 }
