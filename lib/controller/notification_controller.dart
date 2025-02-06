@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:threads/models/notification_model.dart';

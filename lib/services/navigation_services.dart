@@ -13,7 +13,7 @@ class NavigationServices extends GetxController {
   List<Widget> pages() {
     return [
       HomePage(),
-      const SearchPage(),
+      Search(),
       AddThread(),
       const NotificationsPage(),
       const ProfilePage(),

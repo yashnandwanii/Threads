@@ -4,10 +4,11 @@ class RoutesName {
   static String register = '/register';
   static String profile = '/profile';
   static String settings = '/settings';
-  static String about = '/about';
+  static String showThreads = '/showThreads';
   static String contact = '/contact';
-  static String help = '/help';
+  static String showProfile = '/showProfile';
   static String addreply = "/addreply";
+  static String showImage = "/showImage";
 
   static String editProfile = '/editProfile';
 }

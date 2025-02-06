@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:threads/controller/notification_controller.dart';
+import 'package:threads/routes/routes_name.dart';
 import 'package:threads/services/navigation_services.dart';
 import 'package:threads/services/supabase_services.dart';
 import 'package:threads/utils/helper.dart';
@@ -18,8 +19,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
   @override
   void initState() {
-    controller.fetchNotifications(
-        Get.find<SupabaseServices>().currentUser.value!.id!);
+    controller
+        .fetchNotifications(Get.find<SupabaseServices>().currentUser.value!.id);
     super.initState();
   }
 
@@ -51,6 +52,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         itemCount: controller.notifications.length,
                         itemBuilder: (context, index) {
                           return ListTile(
+                            onTap: () {
+                              Get.toNamed(RoutesName.showThreads,
+                                  arguments:
+                                      controller.notifications[index].postId);
+                            },
                             leading: CircleImage(
                               imageUrl: controller
                                   .notifications[index].user!.metadata!.image,

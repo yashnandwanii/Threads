@@ -4,6 +4,7 @@ import 'package:threads/controller/profile_controller.dart';
 import 'package:threads/services/supabase_services.dart';
 import 'package:threads/utils/customOutliendButton.dart';
 import 'package:threads/widgets/circle_image.dart';
+import 'package:threads/widgets/comment_card.dart';
 import 'package:threads/widgets/loading.dart';
 import 'package:threads/widgets/post_card.dart';
 
@@ -20,10 +21,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
-    if (supabaseServices.currentUser.value != null) {
-      controller.fetchPosts(supabaseServices.currentUser.value!.id!);
-      controller.fetchComments(supabaseServices.currentUser.value!.id!);
-    }
+    controller.fetchPosts(supabaseServices.currentUser.value!.id);
+    controller.fetchComments(supabaseServices.currentUser.value!.id);
     super.initState();
   }
 
@@ -155,11 +154,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
                           itemCount: controller.posts.length,
-                          itemBuilder: (context, index) {
-                            PostCard(
-                              post: controller.posts[index],
-                            );
-                          },
+                          itemBuilder: (context, index) => PostCard(
+                            post: controller.posts[index],
+                            isAuthPost: true,
+                            callback: controller.deleteThread,
+                          ),
                         )
                       else
                         Center(
@@ -169,7 +168,32 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              Text("Replies"),
+              Obx(
+                () => SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (controller.replyLoading.value)
+                        const Loading()
+                      else if (controller.comments.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: controller.comments.length,
+                          itemBuilder: (context, index) => CommentCard(
+                            comment: controller.comments[index]!,
+                          ),
+                        )
+                      else
+                        Center(
+                          child: const Text("No Replies found."),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

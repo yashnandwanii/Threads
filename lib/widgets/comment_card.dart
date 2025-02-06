@@ -7,11 +7,10 @@ import 'package:threads/widgets/comment_car_topbar.dart';
 class CommentCard extends StatelessWidget {
   final CommentModel comment;
   final bool isAuthCard;
-  final DeleteCallback? callback;
+
   const CommentCard({
     required this.comment,
     this.isAuthCard = false,
-    this.callback,
     super.key,
   });
 
@@ -38,7 +37,6 @@ class CommentCard extends StatelessWidget {
                   CommentCardTopbar(
                     comment: comment,
                     isAuthCard: isAuthCard,
-                    callback: callback,
                   ),
                   Text(comment.reply!),
                   const SizedBox(height: 10),

@@ -8,8 +8,8 @@ class ConfirmBox extends StatelessWidget {
     required this.text,
     required this.title,
     required this.callback,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +78,7 @@ class SimpleBtn1 extends StatelessWidget {
       {required this.text,
       required this.onPressed,
       this.invertedColors = false,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   final accentColor = const Color(0xffffffff);
 
@@ -87,21 +86,21 @@ class SimpleBtn1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-          elevation: MaterialStateProperty.all(0),
+          elevation: WidgetStateProperty.all(0),
           alignment: Alignment.center,
-          side: MaterialStateProperty.all(const BorderSide(
+          side: WidgetStateProperty.all(const BorderSide(
             width: 1,
             color: Colors.red,
           )),
-          padding: MaterialStateProperty.all(const EdgeInsets.only(
+          padding: WidgetStateProperty.all(const EdgeInsets.only(
             right: 25,
             left: 25,
             top: 0,
             bottom: 0,
           )),
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
               invertedColors ? accentColor : Colors.red),
-          shape: MaterialStateProperty.all(
+          shape: WidgetStateProperty.all(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           )),
       onPressed: onPressed,

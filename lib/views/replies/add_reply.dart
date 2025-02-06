@@ -5,11 +5,10 @@ import 'package:threads/models/post_model.dart';
 import 'package:threads/services/supabase_services.dart';
 import 'package:threads/utils/helper.dart';
 import 'package:threads/widgets/circle_image.dart';
-import 'package:threads/widgets/loading.dart';
 import 'package:threads/widgets/post_card_image.dart';
 
 class AddReply extends StatefulWidget {
-  AddReply({super.key});
+  const AddReply({super.key});
 
   @override
   State<AddReply> createState() => _AddReplyState();
@@ -42,12 +41,13 @@ class _AddReplyState extends State<AddReply> {
                     post.id!,
                     post.userId!,
                   );
+                  Get.back();
                 } else {
                   showSnackBar("Error", "Reply cannot be empty!");
                 }
               },
               child: replyController.loading.value
-                  ? Loading()
+                  ? Center(child: CircularProgressIndicator())
                   : Text(
                       "Reply",
                       style: TextStyle(

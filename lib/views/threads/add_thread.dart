@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:threads/controller/thread_controller.dart';
-import 'package:threads/services/navigation_services.dart';
 import 'package:threads/services/supabase_services.dart';
 import 'package:threads/widgets/circle_image.dart';
 

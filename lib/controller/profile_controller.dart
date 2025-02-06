@@ -25,7 +25,7 @@ class ProfileController extends GetxController {
     final List<dynamic> data =
         await SupabaseServices.client.from("posts").select('''
     id ,content , image ,created_at ,comment_count,like_count,
-    user:user_id (email , metadata), likes:likes (user_id ,post_id)
+    user:user_id (email , metadata), likes: likes(user_id, post_id)
 ''').eq("user_id", userId).order("id", ascending: false);
 
     postLoading.value = false;
@@ -39,7 +39,7 @@ class ProfileController extends GetxController {
     replyLoading.value = true;
     final List<dynamic> data =
         await SupabaseServices.client.from("comments").select('''
-        id , user_id , post_id ,reply ,created_at ,user:user_id (email , metadata)
+        id , user_id , posts_id ,reply ,created_at ,user:user_id (email , metadata)
 ''').eq("user_id", userId).order("id", ascending: false);
     replyLoading.value = false;
     comments.value = [for (var item in data) CommentModel.fromJson(item)];
